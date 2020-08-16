@@ -19,30 +19,30 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cell.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="Huristic.h" />
-    <ClInclude Include="maze2d.h" />
-    <ClInclude Include="maze2dgenerator.h" />
+    <ClInclude Include="Maze2d.h" />
+    <ClInclude Include="Maze2dGenerator.h" />
     <ClInclude Include="MazeCompression.h" />
     <ClInclude Include="MazeSearchAdapt.h" />
-    <ClInclude Include="mymaze2dgenerator.h" />
-    <ClInclude Include="pos.h" />
+    <ClInclude Include="MyMaze2dGenerator.h" />
+    <ClInclude Include="Pos2d.h" />
     <ClInclude Include="searchAlg.h" />
-    <ClInclude Include="simplemaze2dgenerator.h" />
+    <ClInclude Include="simpleMaze2dGenerator.h" />
+    <ClInclude Include="TestMazeGenerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cell.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Maze2d.cpp" />
-    <ClCompile Include="maze2dgenerator.cpp" />
+    <ClCompile Include="Maze2dGenerator.cpp" />
     <ClCompile Include="MazeCompression.cpp" />
     <ClCompile Include="MazeSearchAdapt.cpp" />
-    <ClCompile Include="mymaze2dgenerator.cpp" />
-    <ClCompile Include="pos.cpp" />
-    <ClCompile Include="searchAlg.cpp" />
-    <ClCompile Include="simplemaze2dgenerator.cpp" />
+    <ClCompile Include="MyMaze2dGenerator.cpp" />
+    <ClCompile Include="Position.cpp" />
+    <ClCompile Include="simpleMaze2dGenerator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

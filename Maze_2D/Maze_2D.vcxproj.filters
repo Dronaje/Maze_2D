@@ -15,31 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="maze2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="maze2dgenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MazeCompression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MazeSearchAdapt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mymaze2dgenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="searchAlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simplemaze2dgenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Demo.h">
@@ -48,30 +30,33 @@
     <ClInclude Include="Huristic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TestMazeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maze2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maze2dGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMaze2dGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleMaze2dGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pos2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mymaze2dgenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="searchAlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simplemaze2dgenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cell.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="maze2dgenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MazeCompression.cpp">
@@ -81,6 +66,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Maze2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Maze2dGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMaze2dGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simpleMaze2dGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

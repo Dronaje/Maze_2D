@@ -100,15 +100,28 @@ void Maze2d::makeRandomEntryAndExit()
 	_exit.first = val;
 }
 
-std::pair<int, int> Maze2d::getEntryCell()
+std::pair<int, int> Maze2d::getStartPos()
 {
 	return _entry;
 }
 
-std::pair<int, int> Maze2d::getExitCell()
+Pos2d Maze2d::getStartPosition()
+{
+	Pos2d p(_entry.first, _entry.second);
+	return p;
+}
+
+std::pair<int, int> Maze2d::getGoalPos()
 {
 	return _exit;
 }
+
+Pos2d Maze2d::getGoalPosition()
+{
+	Pos2d exit(_exit.first, _exit.second);
+	return exit;
+}
+
 
 int Maze2d::getRows() const
 {
@@ -120,19 +133,9 @@ int Maze2d::getColumns() const
 	return _columns;
 }
 
-Pos Maze2d::getEnter() const
-{
-	Pos entre(_entry.first, _entry.second);
-	return entre;
-}
 
-Pos Maze2d::getExit() const
-{
-	Pos exit(_exit.first, _exit.second);
-	return exit;
-}
 
-bool Maze2d::isValidMove(Pos  pos) const
+bool Maze2d::isValidMove(Pos2d  pos) const
 {
 	if ((pos.Getcol() < 0) || (pos.Getcol() > _columns) || (pos.Getrow() < 0) || (pos.Getrow() > _rows))
 		return false;
@@ -175,33 +178,33 @@ std::vector<std::pair<int, int>> Maze2d::getWallsSurround(std::pair<int, int> cu
 		moves[3] = std::pair<int, int>(curr.first, curr.second - 1);
 	}
 
-
-	//
-
-
 	return moves;
 }
 
-vector<Pos> Maze2d::getPosiblePlayerMoves(Pos pos)
+vector<Pos2d> Maze2d::getPossiblePlayerMoves(Pos2d pos)
 {
-	vector<Pos> posibleMoves;
-	Pos up(pos.Getrow() - 1, pos.Getcol());
-	Pos right(pos.Getrow(), pos.Getcol() + 1);
-	Pos down(pos.Getrow() + 1, pos.Getcol());
-	Pos left(pos.Getrow(), pos.Getcol() - 1);
+	vector<Pos2d> posibleMoves;
+	Pos2d up(pos.Getrow() - 1, pos.Getcol());
+	Pos2d right(pos.Getrow(), pos.Getcol() + 1);
+	Pos2d down(pos.Getrow() + 1, pos.Getcol());
+	Pos2d left(pos.Getrow(), pos.Getcol() - 1);
 
-	if (isValidMove(up) && _grid[pos.Getrow() - 1][pos.Getcol()].isEmpty())
-		posibleMoves.push_back(up);
-	if (isValidMove(right) && _grid[pos.Getrow()][pos.Getcol() + 1].isEmpty())
-		posibleMoves.push_back(right);
-	if (isValidMove(down) && _grid[pos.Getrow() + 1][pos.Getcol()].isEmpty())
-		posibleMoves.push_back(down);
-	if (isValidMove(left) && _grid[pos.Getrow()][pos.Getcol() - 1].isEmpty())
+	if (isValidMove(up))
+		if( _grid[(int)pos.Getrow() - 1][pos.Getcol()].isEmpty())
+			posibleMoves.push_back(up);
+	if (isValidMove(right))
+		if(_grid[pos.Getrow()][(int)pos.Getcol() + 1].isEmpty())
+			posibleMoves.push_back(right);
+	if (isValidMove(down))
+		if(_grid[(int)pos.Getrow() + 1][pos.Getcol()].isEmpty())
+			posibleMoves.push_back(down);
+	if (isValidMove(left))
+		if(_grid[pos.Getrow()][(int)pos.Getcol() - 1].isEmpty())
 		posibleMoves.push_back(left);
 	return posibleMoves;
 }
 
-vector<pair<int, int>> Maze2d::getPossibleMoves(vector<pair<int, int>> walls, pair<int, int> pos)
+vector<pair<int, int>> Maze2d::GetPossibleMoves(pair<int, int> pos, vector<pair<int, int>> walls)
 {
 	vector<pair<int, int>> move_check = { {-1,0},{0,1},{1,0},{0,-1} };
 	vector<pair<int, int>> moves = walls;
@@ -226,12 +229,15 @@ vector<pair<int, int>> Maze2d::getPossibleMoves(vector<pair<int, int>> walls, pa
 	return moves;
 }
 
-//void Maze2d::Move(int x, int y, pair<int, int> visiting)
-//{
-//	_grid[x][y].breakTheWall();
-//	_grid[x][y].Visited();
-//	_grid[visiting.first][visiting.second].Visited();
-//}
+vector<string> Maze2d::getPossibleMoves(Pos2d p)
+{
+	vector<Pos2d> moves = getPossiblePlayerMoves(p);
+	vector<string> possible;
+	for (int i = 0; i < moves.size(); i++)
+		possible.push_back(moves[i].getPositionAsString());
+	return possible;
+}
+
 
 void Maze2d::makeWall(int row, int column)
 {
@@ -246,9 +252,16 @@ void Maze2d::clearWalls()
 				_grid[i][j].breakTheWall();
 }
 
-void Maze2d::blackCell(Pos pos)
+void Maze2d::blackCell(Pos2d pos)
 {
 	_grid[pos.Getrow()][pos.Getcol()].Visited();
+}
+
+void Maze2d::resetVisited()
+{
+	for (int i = 0; i < _rows; i++)
+		for (int j = 0; j < _columns; j++)
+			_grid[i][j].resetVisited();
 }
 
 void Maze2d::openThePath(int x, int y, pair<int, int> visiting)
@@ -259,3 +272,9 @@ void Maze2d::openThePath(int x, int y, pair<int, int> visiting)
 		_grid[visiting.first][visiting.second].Visited();
 }
 
+
+std::ostream& operator<<(std::ostream& out, Maze2d maze)
+{
+	maze.printMaze();
+	return out;
+}

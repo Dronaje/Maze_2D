@@ -1,11 +1,11 @@
 #include <iostream>
-#include <vector>     // ch
+#include <vector>  
 #include "MyMaze2dGenerator.h"
-#include "SimpleMaze2dGenerator.h"
-#include "searchAlg.h"                 // ch      
-#include "MazeSearchAdapt.h"        // ch
+#include "simpleMaze2dGenerator.h"
+#include "searchAlg.h"         
+#include "MazeSearchAdapt.h"       
 #include "Demo.h"
-
+#include "TestMazeGenerator.h"
 //void print_res(std::vector<std::pair<int, int>> res) {
 //	for (int i = 0; i < res.size(); i++)
 //	{
@@ -18,29 +18,19 @@ int main()
 {
 	srand(time(0));
 
+	MyMaze2dGenerator my_gen;
+	simpleMaze2dGenerator simple_gen;
+	simple_gen.generate(30, 30);
+	my_gen.generate(25, 25);
+	TestMazeGenerator t;
+	TestMazeGenerator t_2;
+
+	t.testMazeGenerator(my_gen);
+	t_2.testMazeGenerator(simple_gen);
+
 	Demo demo;
 	demo.run(25, 25);
 
-
-
-
-	//MazeSearchAdapt* mazeToSearch = new  MazeSearchAdapt(m1);
-	//ManhetenUristic* mh = new ManhetenUristic;
-	//AirLineUristic* alh = new AirLineUristic;
-	//AStar a1(mh);
-	//AStar a2(alh);
-	//BFSalg b1;
-	//std::vector<std::pair<int, int>> res1 = a1.runSearch(m1.getEnter(), m1.getExit(), mazeToSearch);
-	//std::vector<std::pair<int, int>> res2 = a2.runSearch(m1.getEnter(), m1.getExit(), mazeToSearch);
-	//std::vector<std::pair<int, int>> res3 = b1.runSearch(m1.getEnter(), m1.getExit(), mazeToSearch);
-	//std::cout << std::endl;
-	//print_res(res1);
-	//std::cout << std::endl;
-	//print_res(res2);
-	//std::cout << std::endl;
-	//print_res(res3);
-
-	//cout << endl << "\t\t" << maze.measureAlgorithmTime(25,32) << endl;
 
 	return 0;
 }

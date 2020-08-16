@@ -2,9 +2,9 @@
 #include <stack>
 #include <windows.h>
 #include "Maze2d.h"
-#include "SimpleMaze2dGenerator.h"
+#include "simpleMaze2dGenerator.h"
 
-Maze2d SimpleMaze2dGenerator::generate(int rows, int columns)
+Maze2d simpleMaze2dGenerator::generate(int rows, int columns)
 {
 	
 	Maze2d maze(rows, columns);
@@ -20,12 +20,14 @@ Maze2d SimpleMaze2dGenerator::generate(int rows, int columns)
 	else
 		Divide(0, row, 0, col, Vertical, maze); //start by splitting vertically
 
-	maze.printMaze();
+	maze.resetVisited();
+	system("cls");
+	std::cout << maze << endl;
 	return maze;
 }
 
 
-void SimpleMaze2dGenerator::Divide(int row_start, int row_end, int col_start, int col_end, int direction, Maze2d& maze)
+void simpleMaze2dGenerator::Divide(int row_start, int row_end, int col_start, int col_end, int direction, Maze2d& maze)
 {
 	if (row_end - row_start <= 2 || col_end - col_start <= 2)
 		return;
@@ -33,7 +35,7 @@ void SimpleMaze2dGenerator::Divide(int row_start, int row_end, int col_start, in
 
 	if (direction == Vertical)
 	{
-		// creating a vertical line of walls at a random position 
+		// creating a vertical line of walls at a random Pos2d 
 		int seperator_col = getExclusiveRandom(col_start, col_end, 0); // get paired random int from col_start to col_end
 		createWallsLine(row_start, row_end, seperator_col, Vertical, maze);
 
@@ -44,11 +46,12 @@ void SimpleMaze2dGenerator::Divide(int row_start, int row_end, int col_start, in
 		//Recursively 
  		Divide(row_start, row_end, col_start, seperator_col, Horizonal, maze);
 		Divide(row_start, row_end, seperator_col, col_end, Horizonal, maze);
+
 	}
 
 	else // Horizonal Dividing ::
 	{
-		// creating an Horizonal line of walls at a random position 
+		// creating an Horizonal line of walls at a random Pos2d 
 		int seperator_row = getExclusiveRandom(row_start, row_end, 0);
 		createWallsLine(col_start, col_end, seperator_row, Horizonal, maze);
 
@@ -59,12 +62,13 @@ void SimpleMaze2dGenerator::Divide(int row_start, int row_end, int col_start, in
 		//Recursively 
 		Divide(row_start, seperator_row, col_start, col_end, Vertical, maze);
 		Divide(seperator_row, row_end , col_start, col_end, Vertical, maze);
+
 	}
 	return;
 }
 
 
-int SimpleMaze2dGenerator::getExclusiveRandom(const int min, const int max, const int restriction)
+int simpleMaze2dGenerator::getExclusiveRandom(const int min, const int max, const int restriction)
 {
 	//restriction = 0 : PAIR,	restriction = 1: ODD
 
@@ -75,7 +79,7 @@ int SimpleMaze2dGenerator::getExclusiveRandom(const int min, const int max, cons
 }
 
 
-void SimpleMaze2dGenerator::createWallsLine(int itr, const int& end, const int& seperator, bool direction, Maze2d& maze)
+void simpleMaze2dGenerator::createWallsLine(int itr, const int& end, const int& seperator, bool direction, Maze2d& maze)
 {
 	while (itr++ < end)
 		if (direction == Vertical)

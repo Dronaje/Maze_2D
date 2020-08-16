@@ -1,34 +1,32 @@
 #pragma once
-#include "pos.h"
+#include "Pos2d.h"
 
 
-
+template<class T>
 class hurisicCalc {
 public:
-	virtual float Calc(Pos curr, Pos end) = 0;
-};
-
-class ManhetenUristic :public hurisicCalc {
-public:	
-	ManhetenUristic() {}
-	~ManhetenUristic() {}
-	virtual float Calc(Pos curr, Pos end)
-	{
-		return float(fabs(curr.Getrow()-end.Getrow())+fabs(curr.Getcol()-end.Getcol()));
-	}
+	virtual float Calc(T curr, T end) = 0;
 };
 
 
-class AirLineUristic :public hurisicCalc {
+class Manheten2dUristic :public hurisicCalc<Pos2d> {
 public:
-	AirLineUristic(){}
-	~AirLineUristic() {}
-	virtual float Calc(Pos curr, Pos end)
+	Manheten2dUristic() {}
+	~Manheten2dUristic() {}
+	virtual float Calc(Pos2d curr, Pos2d end)
 	{
-		return float(sqrt(pow((end.Getrow()- curr.Getrow()),2)+pow((end.Getcol()- curr.Getcol()),2)));
-		
+		return float(fabs(curr.Getrow() - end.Getrow()) + fabs(curr.Getcol() - end.Getcol()));
 	}
 };
 
 
+class AirLine2dHuristic :public hurisicCalc<Pos2d> {
+public:
+	AirLine2dHuristic() {}
+	~AirLine2dHuristic() {}
+	virtual float Calc(Pos2d curr, Pos2d end)
+	{
+		return float(sqrt(pow((end.Getrow() - curr.Getrow()), 2) + pow((end.Getcol() - curr.Getcol()), 2)));
 
+	}
+};

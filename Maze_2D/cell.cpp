@@ -43,6 +43,11 @@ void Cell::Visited()
 	_visited = true;
 }
 
+void Cell::resetVisited()
+{
+	_visited = false;
+}
+
 void Cell::createWall()
 {
 	_is_wall = true;
@@ -70,6 +75,3 @@ void Cell::createFrame()
 }
 
 
-Cell:: ~Cell()
-{
-}

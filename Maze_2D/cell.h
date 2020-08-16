@@ -18,12 +18,11 @@ public:
 	bool isFrame()const;   
 
 	void emptyCell();      
-	void Visited();        
+	void Visited();      
+	void resetVisited();
 	void createWall();     
 	void breakTheWall();   
 	void createFrame();          
 
 	void printCell();
-
-	~Cell();
 };

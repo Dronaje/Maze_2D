@@ -4,7 +4,7 @@
 #define Horizonal 0
 #define Vertical 1
 
-class SimpleMaze2dGenerator : public Maze2dGenerator
+class simpleMaze2dGenerator : public Maze2dGenerator
 {
 private:
 	//main recursive:
@@ -15,7 +15,7 @@ private:
 
 	//creating a line of walls
 	void createWallsLine(int start, const int& end, const int& seperator, bool direction, Maze2d& maze);
+
 public:
 	virtual Maze2d generate(int rows, int col_end);
-
 };

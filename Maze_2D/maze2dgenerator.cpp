@@ -4,7 +4,7 @@ std::string Maze2dGenerator::measureAlgorithmTime(int rows, int columns)
 {
 	clock_t before = clock();	
 
-	this->generate(rows, columns); //"true" -> testing
+	this->generate(rows, columns);
 
 	clock_t after = clock();
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Cell.h"
-#include "pos.h"     ///ch
+#include "Pos2d.h"   
 #include <ctime>
 
 //COLORS
@@ -22,7 +22,7 @@ using namespace std;
 class Maze2d
 {
 
-protected:                               // ch
+protected:                        
 	int _rows;
 	int _columns;
 	vector<vector<Cell>> _grid;
@@ -30,28 +30,34 @@ protected:                               // ch
 	pair<int, int> _exit;
 
 public:
-	//constructors
+	// Constructors
 	Maze2d();						// Default Constructor 
 	Maze2d(const Maze2d& maze);		// Copy Constructor  
 	Maze2d(int row, int col);		// Main Constructor  
 
-	//simple gets
-	int getRows()  const;  // ch
-	int getColumns()const;  // ch
-	Pos getEnter()const;    // ch
-	Pos getExit() const;    // ch
-	std::pair<int, int> getEntryCell();          // ??
-	std::pair<int, int> getExitCell();           // ?? 
+	// Gets
+	int getRows()  const;  
+	int getColumns()const; 
+
+	// Start
+	Pos2d getStartPosition();
+	std::pair<int, int> getStartPos();
+
+	// Exit
+	Pos2d getGoalPosition();
+	std::pair<int, int> getGoalPos();   
 
 
 	//maze information gets
 	vector<pair<int, int>> getWallsSurround(pair<int, int> curr);
-	vector<pair<int, int>> getPossibleMoves(vector<pair<int, int>> walls, pair <int, int> pos); //using previous method
+	vector<pair<int, int>> GetPossibleMoves(pair <int, int> pos, vector<pair<int, int>> walls);
+	vector<string> getPossibleMoves(Pos2d p);
 
 	//for Player/solve algorithm
-	bool isValidMove(Pos pos)const;                      // ch
-	vector<Pos> getPosiblePlayerMoves(Pos pos);          // ch
-	void blackCell(Pos pos);                             // ch
+	bool isValidMove(Pos2d pos)const;                  
+	vector<Pos2d> getPossiblePlayerMoves(Pos2d pos);      
+	void blackCell(Pos2d pos);
+	void resetVisited();
 
 
 public:
@@ -60,7 +66,7 @@ public:
 	void makeRandomEntryAndExit();
 	void openThePath(int x, int y, pair<int, int> visiting = make_pair(-1, -1)); //(-1,-1) if not moving after opening.
 	void clearWalls();
-
+	friend std::ostream& operator<<(std::ostream& out, Maze2d maze);
 
 
 	//print
