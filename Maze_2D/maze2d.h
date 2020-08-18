@@ -13,7 +13,7 @@
 #define MAGENTA "\033[1m\033[35m"    
 #define CYAN    "\033[1m\033[36m"
 #define BLUE    "\033[1m\033[34m"
-
+#define RED     "\033[1m\033[31m"   
 
 
 using namespace std;
@@ -31,13 +31,15 @@ protected:
 
 public:
 	// Constructors
-	Maze2d();						// Default Constructor 
-	Maze2d(const Maze2d& maze);		// Copy Constructor  
-	Maze2d(int row, int col);		// Main Constructor  
+	Maze2d();							// Default Constructor 
+	Maze2d(const Maze2d& maze);			// Copy Constructor  
+	Maze2d(int row, int col);			// Main Constructor  
+	Maze2d(std::vector<int> mazeData);	// Compressor Constructor
 
 	// Gets
 	int getRows()  const;  
 	int getColumns()const; 
+	std::vector<int>getData()const;
 
 	// Start
 	Pos2d getStartPosition();
@@ -71,7 +73,8 @@ public:
 
 	//print
 	void printMaze();
-//	void printSolution(std::vector<std::pair<int, int>> solution);
+
+	
 	//destructor
 	~Maze2d();
 };

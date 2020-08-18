@@ -4,7 +4,7 @@
 #include "maze2d.h"
 #include <vector>
 #include <string>
-
+#include<fstream>
 
 class MazeCompression {
 public:

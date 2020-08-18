@@ -54,6 +54,49 @@ Maze2d::Maze2d(int row, int col)
 
 }
 
+Maze2d::Maze2d(std::vector<int> mazeData)
+{
+	std::vector<Cell> temp, frameWall;
+	Cell cell, frameCell;
+	frameCell.createFrame();
+
+	_rows = mazeData[0];
+	_columns = mazeData[1];
+	_entry = { mazeData[2],mazeData[3] };
+	_exit = { mazeData[4],mazeData[5] };
+
+	for (int f = 0; f < (_columns + 1); f++)
+	{
+		frameWall.push_back(frameCell);
+	}
+	_grid.push_back(frameWall);
+
+
+	for (int i = 6; i < mazeData.size();)
+	{
+		temp.clear();
+		temp.push_back(frameCell);
+		do
+		{
+			if (mazeData[i] == 1)
+				cell.createWall();
+			else
+			{
+				cell.breakTheWall();
+			}
+			temp.push_back(cell);
+			i++;
+		} while (((i - 6) % (_columns - 1)) != 0);
+
+		temp.push_back(frameCell);
+		_grid.push_back(temp);
+	}
+	_grid.push_back(frameWall);
+
+	_grid[_entry.first][_entry.second].breakTheWall();
+	_grid[_exit.first][_exit.second].breakTheWall();
+}
+
 
 void Maze2d::printMaze()
 {
@@ -131,6 +174,25 @@ int Maze2d::getRows() const
 int Maze2d::getColumns() const
 {
 	return _columns;
+}
+
+std::vector<int> Maze2d::getData() const
+{
+	std::vector<int> mazeData;
+	mazeData.push_back(_rows);
+	mazeData.push_back(_columns);
+	mazeData.push_back(_entry.first);
+	mazeData.push_back(_entry.second);
+	mazeData.push_back(_exit.first);
+	mazeData.push_back(_exit.second);
+	for (int i = 1; i < (_rows); i++)
+		for (int j = 1; j < (_columns); j++)
+			if (_grid[i][j].isWall())
+				mazeData.push_back(1);
+			else
+				mazeData.push_back(0);
+
+	return mazeData;
 }
 
 
